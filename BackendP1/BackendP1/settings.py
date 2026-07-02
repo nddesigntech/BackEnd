@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',  # Framework REST pour créer les endpoints API
     'produits',
     'authentification',
     'abonnementVendeur',
@@ -53,6 +54,17 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+AUTH_USER_MODEL = 'authentification.CustomUser'  # Utilisation d'un modèle utilisateur personnalisé
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'authentification.authentication.JWTAuthentication',  # Authentification JWT personnalisée
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',  # Par défaut, les API sont protégées
+    ],
+}
 
 ROOT_URLCONF = 'BackendP1.urls'
 
