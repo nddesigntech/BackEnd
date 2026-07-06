@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils import timezone
 
-from authentification.models.user import CustomUser
+from authentification.models.user import Utilisateur
 
 
 class Paiement(models.Model):
@@ -19,7 +19,7 @@ class Paiement(models.Model):
         ('annulé', 'Annulé'),
     ]
 
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='paiements')
+    user = models.ForeignKey(Utilisateur, on_delete=models.CASCADE, related_name='paiements')
     montant = models.DecimalField(max_digits=10, decimal_places=2)
     mode_paiement = models.CharField(max_length=50, choices=PAYMENT_METHOD_CHOICES, default='carte')
     statut = models.CharField(max_length=50, choices=STATUT_CHOICES, default='en_attente')

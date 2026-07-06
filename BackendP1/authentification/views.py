@@ -7,13 +7,13 @@ from rest_framework import generics, permissions, status
 from rest_framework.response import Response
 
 from .authentication import JWTAuthentication
-from .models import BlacklistedToken, CustomUser
+from .models import BlacklistedToken, Utilisateur
 from .serializers import LoginSerializer, RegisterSerializer, UserSerializer, UserUpdateSerializer
 
 
 class RegisterView(generics.CreateAPIView):
     # Endpoint pour l'inscription d'un nouvel utilisateur
-    queryset = CustomUser.objects.all()
+    queryset = Utilisateur.objects.all()
     permission_classes = [permissions.AllowAny]
     serializer_class = RegisterSerializer
 
@@ -85,14 +85,14 @@ class LogoutView(generics.GenericAPIView):
 
 class UserListView(generics.ListAPIView):
     # Endpoint pour lister tous les utilisateurs (admin uniquement)
-    queryset = CustomUser.objects.all().order_by('-id')
+    queryset = Utilisateur.objects.all().order_by('-id')
     serializer_class = UserSerializer
     permission_classes = [permissions.IsAdminUser]
 
 
 class UserUpdateView(generics.UpdateAPIView):
     # Endpoint pour modifier un utilisateur existant (admin uniquement)
-    queryset = CustomUser.objects.all()
+    queryset = Utilisateur.objects.all()
     serializer_class = UserUpdateSerializer
     permission_classes = [permissions.IsAdminUser]
     lookup_url_kwarg = 'pk'
@@ -100,6 +100,6 @@ class UserUpdateView(generics.UpdateAPIView):
 
 class UserDeleteView(generics.DestroyAPIView):
     # Endpoint pour supprimer un utilisateur (admin uniquement)
-    queryset = CustomUser.objects.all()
+    queryset = Utilisateur.objects.all()
     permission_classes = [permissions.IsAdminUser]
     lookup_url_kwarg = 'pk'

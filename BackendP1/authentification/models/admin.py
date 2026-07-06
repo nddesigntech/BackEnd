@@ -1,11 +1,11 @@
 from django.db import models
 
-from .user import CustomUser
+from .user import Utilisateur
 
 
 class AdminProfile(models.Model):
     """Profil administrateur pour les utilisateurs ayant des droits avancés."""
-    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name='admin_profile')
+    user = models.OneToOneField(Utilisateur, on_delete=models.CASCADE, related_name='admin_profile')
     niveau = models.PositiveSmallIntegerField(default=1)
     contact_interne = models.CharField(max_length=200, blank=True)
 

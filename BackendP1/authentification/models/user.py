@@ -6,7 +6,7 @@ from django.utils import timezone
 
 # Modèle utilisateur personnalisé pour le système d'authentification
 # Ce modèle remplace l'utilisateur Django par défaut pour ajouter des rôles spécifiques à la plateforme.
-class CustomUserManager(BaseUserManager):
+class UtilisateurManager(BaseUserManager):
     use_in_migrations = True
 
     def create_user(self, username, email, password=None, **extra_fields):
@@ -34,7 +34,7 @@ class CustomUserManager(BaseUserManager):
         return self.create_user(username, email, password, **extra_fields)
 
 
-class CustomUser(AbstractBaseUser, PermissionsMixin):
+class Utilisateur(AbstractBaseUser, PermissionsMixin):
     ROLE_CHOICES = [
         ('client', 'Client'),
         ('vendeur', 'Vendeur'),
@@ -51,11 +51,14 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=True)
     date_joined = models.DateTimeField(default=timezone.now)
 
-    objects = CustomUserManager()
+    objects = UtilisateurManager()
 
     USERNAME_FIELD = 'username'
     EMAIL_FIELD = 'email'
     REQUIRED_FIELDS = ['email']
+
+    class Meta:
+        db_table = 'authentification_customuser'
 
     def __str__(self):
         return self.username
@@ -69,3 +72,8 @@ class BlacklistedToken(models.Model):
 
     def __str__(self):
         return f'Blacklisted token expiring {self.expires_at}'
+
+
+# alias pour compatibilité avec les imports existants et les migrations déjà générées
+CustomUserManager = UtilisateurManager
+CustomUser = Utilisateur
