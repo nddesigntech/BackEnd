@@ -1,11 +1,11 @@
 from django.db import models
 
-from .user import CustomUser
+from .user import Utilisateur
 
 
 class VendeurProfile(models.Model):
     """Profil vendeur pour l'utilisateur ayant le rôle vendeur."""
-    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name='vendeur_profile')
+    user = models.OneToOneField(Utilisateur, on_delete=models.CASCADE, related_name='vendeur_profile')
     nom_boutique = models.CharField(max_length=255, blank=True)
     siret = models.CharField(max_length=50, blank=True)
     telephone = models.CharField(max_length=30, blank=True)

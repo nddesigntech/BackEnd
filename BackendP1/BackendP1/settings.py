@@ -55,7 +55,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-AUTH_USER_MODEL = 'authentification.CustomUser'  # Utilisation d'un modèle utilisateur personnalisé
+AUTH_USER_MODEL = 'authentification.Utilisateur'  # Utilisation d'un modèle utilisateur personnalisé
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [

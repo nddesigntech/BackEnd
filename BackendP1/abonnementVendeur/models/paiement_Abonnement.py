@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils import timezone
 
-from authentification.models.user import CustomUser
+from authentification.models.user import Utilisateur
 from .abonnement import Abonnement
 
 
@@ -18,7 +18,7 @@ class PaiementAbonnement(models.Model):
     # Référence de transaction fournie par le système de paiement
     reference = models.CharField(max_length=200, blank=True)
     # Vendeur qui réalise ce paiement
-    vendeur = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='paiements_abonnement')
+    vendeur = models.ForeignKey(Utilisateur, on_delete=models.CASCADE, related_name='paiements_abonnement')
 
     def __str__(self):
         return f'Paiement {self.id} - {self.montant}€'

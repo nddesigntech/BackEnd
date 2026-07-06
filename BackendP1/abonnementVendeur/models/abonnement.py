@@ -3,14 +3,14 @@ from datetime import timedelta
 from django.db import models
 from django.utils import timezone
 
-from authentification.models.user import CustomUser
+from authentification.models.user import Utilisateur
 from .plan_Abonnement import PlanAbonnement
 
 
 class Abonnement(models.Model):
     """Représente un abonnement souscrit par un vendeur."""
     # Vendeur qui a pris cet abonnement
-    vendeur = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='abonnements')
+    vendeur = models.ForeignKey(Utilisateur, on_delete=models.CASCADE, related_name='abonnements')
     # Plan choisi par le vendeur
     plan = models.ForeignKey(PlanAbonnement, on_delete=models.PROTECT, related_name='abonnements')
     # Date de début de l'abonnement

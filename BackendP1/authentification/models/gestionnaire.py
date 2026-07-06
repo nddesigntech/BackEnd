@@ -1,11 +1,11 @@
 from django.db import models
 
-from .user import CustomUser
+from .user import Utilisateur
 
 
 class GestionnaireProfile(models.Model):
     """Profil gestionnaire pour les administrateurs internes."""
-    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name='gestionnaire_profile')
+    user = models.OneToOneField(Utilisateur, on_delete=models.CASCADE, related_name='gestionnaire_profile')
     departement = models.CharField(max_length=100, blank=True)
     statut = models.CharField(max_length=100, blank=True)
 

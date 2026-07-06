@@ -1,11 +1,11 @@
 from django.db import models
 
-from .user import CustomUser
+from .user import Utilisateur
 
 
 class ClientProfile(models.Model):
     """Profil client pour l'utilisateur de type client."""
-    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name='client_profile')
+    user = models.OneToOneField(Utilisateur, on_delete=models.CASCADE, related_name='client_profile')
     adresse = models.CharField(max_length=255, blank=True)
     telephone = models.CharField(max_length=30, blank=True)
     date_naissance = models.DateField(null=True, blank=True)

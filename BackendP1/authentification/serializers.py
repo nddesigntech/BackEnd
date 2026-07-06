@@ -1,13 +1,13 @@
 from django.contrib.auth import authenticate
 from rest_framework import serializers
 
-from .models import CustomUser
+from .models import Utilisateur
 
 
 class UserSerializer(serializers.ModelSerializer):
     # Sérialiseur pour exposer les informations de l'utilisateur
     class Meta:
-        model = CustomUser
+        model = Utilisateur
         fields = ['id', 'username', 'email', 'first_name', 'last_name', 'role']
 
 
@@ -16,7 +16,7 @@ class RegisterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True, min_length=8)
 
     class Meta:
-        model = CustomUser
+        model = Utilisateur
         fields = ['username', 'email', 'password', 'first_name', 'last_name', 'role']
         extra_kwargs = {
             'role': {'required': False},
@@ -25,7 +25,7 @@ class RegisterSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         # Crée l'utilisateur et crypte le mot de passe
         password = validated_data.pop('password')
-        user = CustomUser.objects.create(**validated_data)
+        user = Utilisateur.objects.create(**validated_data)
         user.set_password(password)
         user.save()
         return user
@@ -48,9 +48,9 @@ class LoginSerializer(serializers.Serializer):
         if email:
             try:
                 # Recherche l'utilisateur par email si fourni
-                user = CustomUser.objects.get(email=email)
+                user = Utilisateur.objects.get(email=email)
                 username = user.username
-            except CustomUser.DoesNotExist:
+            except Utilisateur.DoesNotExist:
                 raise serializers.ValidationError('Impossible de se connecter avec ces informations.')
 
         # Vérifie les identifiants
@@ -67,7 +67,7 @@ class UserUpdateSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True, required=False, allow_blank=True)
 
     class Meta:
-        model = CustomUser
+        model = Utilisateur
         fields = ['username', 'email', 'first_name', 'last_name', 'role', 'password']
         extra_kwargs = {
             'password': {'write_only': True, 'required': False},
