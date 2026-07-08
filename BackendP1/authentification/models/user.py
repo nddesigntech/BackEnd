@@ -6,7 +6,7 @@ from django.utils import timezone
 
 # Modèle utilisateur personnalisé pour le système d'authentification
 # Ce modèle remplace l'utilisateur Django par défaut pour ajouter des rôles spécifiques à la plateforme.
-class UtilisateurManager(models.Model):
+class UtilisateurManager(BaseUserManager):
     use_in_migrations = True
 
     def create_user(self, username, email, password=None, **extra_fields):
