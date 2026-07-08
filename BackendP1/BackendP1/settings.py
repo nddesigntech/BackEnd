@@ -12,23 +12,23 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 
 from pathlib import Path
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+# Construire les chemins du projet ainsi : BASE_DIR / 'sous_dossier'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
+# Paramètres de développement rapides - non adaptés à la production
+# Voir https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
+# AVERTISSEMENT DE SÉCURITÉ : conservez la clé secrète utilisée en production de manière confidentielle !
 SECRET_KEY = 'django-insecure-=rv9h5^v+f)z@uisujbpisw#prnb!$9uscs%&+s57lxfsveu6)'
 
-# SECURITY WARNING: don't run with debug turned on in production!
+# AVERTISSEMENT DE SÉCURITÉ : ne pas exécuter avec le mode débogage activé en production !
 DEBUG = True
 
 ALLOWED_HOSTS = []
 
 
-# Application definition
+# Définition des applications
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -86,7 +86,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'BackendP1.wsgi.application'
 
 
-# Database
+# Base de données
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
 DATABASES = {
@@ -97,7 +97,7 @@ DATABASES = {
 }
 
 
-# Password validation
+# Validation des mots de passe
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -116,7 +116,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-# Internationalization
+# Internationalisation
 # https://docs.djangoproject.com/en/6.0/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
@@ -128,7 +128,7 @@ USE_I18N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
+# Fichiers statiques (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
